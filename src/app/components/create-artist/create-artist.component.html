@@ -1,0 +1,56 @@
+<h1>Create New Artist</h1>
+
+<div class="form-group">
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit()">
+
+    <div class="artist-name">
+      <label for="name" class="form-label mt-4">Artist name</label>
+      <input type="text"
+             class="form-control mt-1"
+             placeholder="Artist name"
+             name="name"
+             formControlName="name">
+      <div *ngIf="artistForm.get('name').invalid && artistForm.get('name').touched ">
+        <div *ngIf="artistForm.get('name').errors.required">
+          <p class="text-danger">Name is required</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artist-photo-Url">
+      <label for="photoUrl" class="form-label mt-4">Artist photo URL</label>
+      <input type="text"
+             class="form-control mt-1"
+             placeholder="Artist photo Url"
+             name="photoUrl"
+             formControlName="photoUrl">
+    </div>
+
+    <div class="artist-birth-date">
+      <label for="birthdate" class="form-label mt-4">Birth date</label>
+      <input type="date"
+              id="birthdate"
+              class="form-control mt-1"
+              min="1909-01-01" max="2030-12-31"
+              name="birthdate"
+              formControlName="birthdate">
+              <div *ngIf="artistForm.get('birthdate').errors">
+                <p class="text-danger">Date must be greater than 1909-01-01 and less than 2030-12-31</p>
+            </div>
+    </div>
+
+    <div class="artist-death-date">
+      <label for="deathDate" class="form-label mt-4">Death date</label>
+      <input type="date"
+              class="form-control mt-1"
+              min="1909-01-01" max="2030-12-31"
+              name="deathDate"
+              formControlName="deathDate">
+              <div *ngIf="artistForm.get('deathDate').errors">
+                <p class="text-danger">Date must be greater than 1909-01-01 and less than 2030-12-31</p>
+            </div>
+    </div>
+
+    <button type="submit" class="btn btn-secondary mt-4" [disabled]="!artistForm.valid">Submit</button>
+  </form>
+</div>

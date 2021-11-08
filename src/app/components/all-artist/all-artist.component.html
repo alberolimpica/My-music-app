@@ -1,0 +1,19 @@
+<div  [hidden]="artistResults?.length > 0">
+  <div class="alert alert-dismissible alert-danger">
+    <strong>No artists to display!</strong>
+  </div>
+</div>
+<div *ngIf="artistResults">
+  <div class="row g-2 row-cols-5 row-cols-sm-2 row-cols-md-4">
+    <div *ngFor="let res of artistResults" class="list-group">
+      <div class="col-md">
+        <div *ngIf="res.photoUrl.length > 0">
+          <a class="artist-route" routerLink="/see-artist/{{res._id}}">
+            <img src="{{res.photoUrl}}" alt="" class="img-fluid">
+            <h4>{{res.name}}</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

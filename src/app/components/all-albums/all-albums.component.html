@@ -1,0 +1,21 @@
+
+<div  [hidden]="albumResults?.length > 0">
+  <div class="alert alert-dismissible alert-danger">
+    <strong>No albums to display!</strong>
+  </div>
+</div>
+
+<div *ngIf="albumResults">
+  <div class="row g-2 row-cols-5 row-cols-sm-2 row-cols-md-4">
+    <div *ngFor="let res of albumResults" class="list-group">
+      <div class="col-md">
+        <div *ngIf="res.coverUrl.length > 0">
+          <a class="album-route" routerLink="/see-album/{{res._id}}">
+            <img src="{{res.coverUrl}}" alt="" class="img-fluid">
+            <h4>{{res.title}}</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

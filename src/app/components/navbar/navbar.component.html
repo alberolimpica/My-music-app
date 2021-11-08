@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">
+      Music App
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/create-artist">Create Artist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/all-artists">See all Artists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/create-album">Create Album</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/all-albums">See all Albums</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

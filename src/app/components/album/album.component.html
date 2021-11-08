@@ -1,0 +1,41 @@
+<div  [hidden]="album">
+  <div class="alert alert-dismissible alert-danger">
+    <strong>No album to display!</strong>
+  </div>
+</div>
+
+ <div *ngIf="album">
+  <div class="container px-4">
+    <div class="album mb-3">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-4">
+            <div *ngIf="album.coverUrl.length > 0">
+              <img src="{{album.coverUrl}}" alt="" class="album-photo img-thumbnail">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h1>{{album.title}}</h1>
+            <div *ngIf="artistName">
+              <h2>{{artistName}}</h2>
+            </div>
+            <div *ngIf="album.year">
+              <h5 class="text-muted">Release year: {{album.year}}</h5>
+            </div>
+            <div *ngIf="album.genre">
+              <h5 class="text-muted">Genre: {{album.genre}}</h5>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm m-3" routerLink="/modify-album/{{album._id}}">Modify Album</button>
+            <button type="button" class="btn btn-danger btn-sm m-3" (click)="deleteAlbum()">Delete Album</button>
+
+            <div *ngIf="deleted" class="alert alert-dismissible alert-success">
+              <strong>Album successfully deleted</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,72 @@
+<h1>Create New Album</h1>
+
+<div class="form-group">
+  <form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+
+    <div class="album-title">
+      <label for="title" class="form-label mt-4">Album title</label>
+      <input type="text"
+             class="form-control mt-1"
+             placeholder="Album title"
+             name="title"
+             formControlName="title">
+      <div *ngIf="albumForm.get('title').invalid && albumForm.get('title').touched ">
+        <div *ngIf="albumForm.get('title').errors.required">
+          <p class="text-danger">Title is required</p>
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label class="form-label mt-4" for="inputLarge">Search for an artist or a band!</label>
+        <input type="text" name="searchArtistValue" class="form-control mt-1" autocomplete="off"
+          [(ngModel)]="searchArtistValue" (keyup)="searchArtist()" placeholder="Search artist!">
+      </div>
+    </form>
+
+    <div *ngIf="artistResults">
+      <div *ngFor="let res of artistResults" class="list-group">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="search-res well">
+              <div class="artist" (click)="saveArtistId(res)">
+                <h4>{{res.name}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-coverUrl">
+      <label for="coverUrl" class="form-label mt-4">Album cover URL</label>
+      <input type="text"
+             class="form-control mt-1"
+             placeholder="Album cover Url"
+             name="coverUrl"
+             formControlName="coverUrl">
+    </div>
+
+
+    <div class="album-release-year">
+      <label for="year" class="form-label mt-4">Album release year</label>
+      <input type="number"
+              class="form-control mt-1"
+              name="year"
+              min="1909" max="2030"
+              formControlName="year">
+    </div>
+
+    <div class="album-genre">
+      <label for="title" class="form-label mt-4">Album genre</label>
+      <input type="text"
+             class="form-control mt-1"
+             placeholder="Album genre"
+             name="genre"
+             formControlName="genre">
+    </div>
+
+    <button type="submit" class="btn btn-secondary mt-4" [disabled]="!albumForm.valid">Submit</button>
+  </form>
+</div>

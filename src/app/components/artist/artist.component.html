@@ -1,0 +1,37 @@
+<div  [hidden]="artist">
+  <div class="alert alert-dismissible alert-danger">
+    <strong>No artist to display!</strong>
+  </div>
+</div>
+
+<div *ngIf="artist">
+  <div class="container px-4">
+    <div class="artist mb-3">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-4">
+            <div *ngIf="artist.photoUrl.length > 0">
+              <img src="{{artist.photoUrl}}" alt="" class="artist-photo img-thumbnail rounded">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h1>{{artist.name}}</h1>
+            <div *ngIf="artist.birthdate">
+              <h3>Birth date: {{birth | date }}</h3>
+            </div>
+            <div *ngIf="artist.deathDate">
+              <h3>Death date: {{death| date }}</h3>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-sm m-3" routerLink="/modify-artist/{{artist._id}}">Modify Artist</button>
+            <button type="button" class="btn btn-danger btn-sm m-3" (click)="deleteArtist()" >Delete Artist</button>
+
+            <div  *ngIf="deleted" class="alert alert-dismissible alert-success">
+              <strong>Artist successfully deleted</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
