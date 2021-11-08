@@ -13,6 +13,7 @@ import { Artist } from 'src/app/Models/Artist';
 export class CreateAlbumComponent implements OnInit {
   album:Album;
   id:string = "";
+  headerText:string;
 
   artistValue: Artist;
   searchArtistValue: string;
@@ -35,8 +36,11 @@ export class CreateAlbumComponent implements OnInit {
    ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       if(params.has('id')){
+        this.headerText = "Modify Album"
         this.id = params.get('id');
         this.getAlbum();
+      }else{
+        this.headerText = "Create New Album";
       }
     });
   }

@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
   searchAlbum(){
     this.musicApiService.searchMusic("albums")
     .subscribe(res =>{
-      this.albumsResults = res.filter((album:any) => album.name.includes(this.searchAlbumValue));
+      this.albumsResults = res.filter((album:any) => album.title.includes(this.searchAlbumValue));
     });
   }
 }

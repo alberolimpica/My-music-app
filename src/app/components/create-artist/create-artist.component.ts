@@ -16,6 +16,7 @@ export class CreateArtistComponent implements OnInit {
   artist:Artist;
   minDate = new Date("1909-01-01");
   maxDate = new Date("2030-12-31");
+  headerText:string;
 
   public artistForm: FormGroup  = new FormGroup({
     name: new FormControl("", Validators.required),
@@ -34,8 +35,11 @@ export class CreateArtistComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       if(params.has('id')){
+        this.headerText = "Modify Artist"
         this.id = params.get('id');
         this.getArtist();
+      }else{
+        this.headerText = "Create New Artist"
       }
     });
   }
