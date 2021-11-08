@@ -34,7 +34,6 @@ export class CreateAlbumComponent implements OnInit {
 
    ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      console.log(params);
       if(params.has('id')){
         this.id = params.get('id');
         this.getAlbum();
@@ -59,7 +58,6 @@ export class CreateAlbumComponent implements OnInit {
   addAlbum() {
     this.musicApiService.addMusic(this.album, "album")
       .subscribe(data => {
-        console.log(data)
       });
       this.albumForm.reset;
     }
@@ -68,7 +66,6 @@ export class CreateAlbumComponent implements OnInit {
     this.album._id = this.id;
     this.musicApiService.updateMusic(this.album._id, this.album, "album")
       .subscribe(data => {
-        console.log(data)
         this.albumForm.reset;
       });
     }
@@ -76,13 +73,11 @@ export class CreateAlbumComponent implements OnInit {
   searchArtist(){
     this.musicApiService.searchMusic("artists")
     .subscribe(res =>{
-      console.log(res);
       this.artistResults = res.filter((artist:any) => artist.name.includes(this.searchArtistValue));
     });
   }
 
   saveArtistId(artist:Artist){
-    console.log(artist)
     this.albumForm.get("artistId").setValue(artist._id);
     this.artistResults = [];
     this.searchArtistValue = artist.name;

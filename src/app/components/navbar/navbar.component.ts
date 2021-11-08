@@ -9,7 +9,8 @@ export class NavbarComponent implements OnInit {
   navbarOpen = false;
 
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }

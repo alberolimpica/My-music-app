@@ -22,7 +22,6 @@ export class AllAlbumsComponent implements OnInit {
   searchAlbum(){
     this.musicApiService.searchMusic( "albums")
     .subscribe(res =>{
-      console.log(res);
       this.albumResults = res;
     });
   }

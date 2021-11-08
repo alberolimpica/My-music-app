@@ -21,7 +21,6 @@ export class AllArtistComponent implements OnInit {
   searchArtist(){
     this.musicApiService.searchMusic( "artists")
     .subscribe(res =>{
-      console.log(res);
       this.artistResults = res;
     });
   }

@@ -33,7 +33,6 @@ export class CreateArtistComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      console.log(params);
       if(params.has('id')){
         this.id = params.get('id');
         this.getArtist();
@@ -44,10 +43,8 @@ export class CreateArtistComponent implements OnInit {
   onSubmit() {
     this.artist = this.artistForm.value;
     if(this.id === ""){
-      console.log(1);
       this.addArtist();
     }else{
-      console.log(2);
       this.updateArtist();
     }
 
@@ -57,7 +54,6 @@ export class CreateArtistComponent implements OnInit {
   addArtist() {
     this.musicApiService.addMusic(this.artist, "artist")
       .subscribe(data => {
-        console.log(data)
         this.artistForm.reset;
       });
   }
@@ -66,7 +62,6 @@ export class CreateArtistComponent implements OnInit {
     this.artist._id = this.id;
     this.musicApiService.updateMusic(this.artist._id, this.artist, "artist")
       .subscribe(data => {
-        console.log(data)
         this.artistForm.reset;
       });
   }
