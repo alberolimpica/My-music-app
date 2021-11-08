@@ -11,15 +11,15 @@ import { Artist } from 'src/app/Models/Artist';
   styleUrls: ['./create-album.component.css']
 })
 export class CreateAlbumComponent implements OnInit {
-  album:Album;
-  id:string = "";
-  headerText:string;
+  album: Album;
+  id: string = "";
+  headerText: string;
 
   artistValue: Artist;
   searchArtistValue: string;
   artistResults: Artist[];
 
-  public albumForm: FormGroup  = new FormGroup({
+  public albumForm: FormGroup = new FormGroup({
     title: new FormControl("", Validators.required),
     artistId: new FormControl(""),
     coverUrl: new FormControl(""),
@@ -29,17 +29,17 @@ export class CreateAlbumComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-    private musicApiService: MusicApiService, private router: Router ) {
+    private musicApiService: MusicApiService, private router: Router) {
 
-   }
+  }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      if(params.has('id')){
+      if (params.has('id')) {
         this.headerText = "Modify Album"
         this.id = params.get('id');
         this.getAlbum();
-      }else{
+      } else {
         this.headerText = "Create New Album";
       }
     });
@@ -49,9 +49,9 @@ export class CreateAlbumComponent implements OnInit {
   onSubmit() {
     this.album = this.albumForm.value;
 
-    if(this.id === ""){
+    if (this.id === "") {
       this.addAlbum();
-    }else{
+    } else {
       this.updateAlbum();
     }
 
@@ -63,8 +63,8 @@ export class CreateAlbumComponent implements OnInit {
     this.musicApiService.addMusic(this.album, "album")
       .subscribe(data => {
       });
-      this.albumForm.reset;
-    }
+    this.albumForm.reset;
+  }
 
   updateAlbum() {
     this.album._id = this.id;
@@ -72,16 +72,16 @@ export class CreateAlbumComponent implements OnInit {
       .subscribe(data => {
         this.albumForm.reset;
       });
-    }
-
-  searchArtist(){
-    this.musicApiService.searchMusic("artists")
-    .subscribe(res =>{
-      this.artistResults = res.filter((artist:any) => artist.name.includes(this.searchArtistValue));
-    });
   }
 
-  saveArtistId(artist:Artist){
+  searchArtist() {
+    this.musicApiService.searchMusic("artists")
+      .subscribe(res => {
+        this.artistResults = res.filter((artist: any) => artist.name.includes(this.searchArtistValue));
+      });
+  }
+
+  saveArtistId(artist: Artist) {
     this.albumForm.get("artistId").setValue(artist._id);
     this.artistResults = [];
     this.searchArtistValue = artist.name;
@@ -89,17 +89,17 @@ export class CreateAlbumComponent implements OnInit {
 
   getAlbum(): void {
     this.musicApiService.getMusic(this.id, "album")
-    .subscribe(res =>{
-      this.album = res;
+      .subscribe(res => {
+        this.album = res;
 
-      this.albumForm.setValue({
-        title: res.title,
-        artistId: res.artistId !==null ? res.artistId: "",
-        coverUrl: res.coverUrl !==null ? res.coverUrl: "",
-        year: res.year !==null ? res.year: "",
-        genre: res.genre !==null ? res.genre: "",
+        this.albumForm.setValue({
+          title: res.title,
+          artistId: res.artistId !== null ? res.artistId : "",
+          coverUrl: res.coverUrl !== null ? res.coverUrl : "",
+          year: res.year !== null ? res.year : "",
+          genre: res.genre !== null ? res.genre : "",
+        });
       });
-    });
   }
 
 }

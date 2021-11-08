@@ -18,22 +18,22 @@ export class SearchComponent implements OnInit {
 
   constructor(private musicApiService: MusicApiService) {
 
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  searchArtist(){
-    this.musicApiService.searchMusic( "artists")
-    .subscribe(res =>{
-      this.artistResults = res.filter((artist:any) => artist.name.includes(this.searchArtistValue));
-    });
+  searchArtist() {
+    this.musicApiService.searchMusic("artists")
+      .subscribe(res => {
+        this.artistResults = res.filter((artist: any) => artist.name.includes(this.searchArtistValue));
+      });
   }
 
-  searchAlbum(){
+  searchAlbum() {
     this.musicApiService.searchMusic("albums")
-    .subscribe(res =>{
-      this.albumsResults = res.filter((album:any) => album.title.includes(this.searchAlbumValue));
-    });
+      .subscribe(res => {
+        this.albumsResults = res.filter((album: any) => album.title.includes(this.searchAlbumValue));
+      });
   }
 }

@@ -12,13 +12,13 @@ import { MusicApiService } from 'src/app/services/music-api.service';
 })
 export class CreateArtistComponent implements OnInit {
 
-  id:string = "";
-  artist:Artist;
+  id: string = "";
+  artist: Artist;
   minDate = new Date("1909-01-01");
   maxDate = new Date("2030-12-31");
-  headerText:string;
+  headerText: string;
 
-  public artistForm: FormGroup  = new FormGroup({
+  public artistForm: FormGroup = new FormGroup({
     name: new FormControl("", Validators.required),
     photoUrl: new FormControl(""),
     birthdate: new FormControl("", [this.dateRangeValidator(this.minDate, this.maxDate)]),
@@ -28,17 +28,17 @@ export class CreateArtistComponent implements OnInit {
   );
 
   constructor(private route: ActivatedRoute,
-    private musicApiService: MusicApiService, public datepipe: DatePipe, private router: Router  ) {
+    private musicApiService: MusicApiService, public datepipe: DatePipe, private router: Router) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      if(params.has('id')){
+      if (params.has('id')) {
         this.headerText = "Modify Artist"
         this.id = params.get('id');
         this.getArtist();
-      }else{
+      } else {
         this.headerText = "Create New Artist"
       }
     });
@@ -46,9 +46,9 @@ export class CreateArtistComponent implements OnInit {
 
   onSubmit() {
     this.artist = this.artistForm.value;
-    if(this.id === ""){
+    if (this.id === "") {
       this.addArtist();
-    }else{
+    } else {
       this.updateArtist();
     }
 
@@ -72,15 +72,15 @@ export class CreateArtistComponent implements OnInit {
 
   getArtist(): void {
     this.musicApiService.getMusic(this.id, "artist")
-    .subscribe(res =>{
-      this.artist = res;
-      this.artistForm.setValue({
-        name: res.name,
-        photoUrl: res.photoUrl ? res.photoUrl: "",
-        birthdate: res.birthdate? this.datepipe.transform(new Date(res.birthdate),'yyyy-MM-dd') : "",
-        deathDate: res.deathDate? this.datepipe.transform(new Date(res.deathDate),'yyyy-MM-dd') : ""
+      .subscribe(res => {
+        this.artist = res;
+        this.artistForm.setValue({
+          name: res.name,
+          photoUrl: res.photoUrl ? res.photoUrl : "",
+          birthdate: res.birthdate ? this.datepipe.transform(new Date(res.birthdate), 'yyyy-MM-dd') : "",
+          deathDate: res.deathDate ? this.datepipe.transform(new Date(res.deathDate), 'yyyy-MM-dd') : ""
+        });
       });
-    });
   }
 
 
@@ -92,7 +92,7 @@ export class CreateArtistComponent implements OnInit {
 
       if ((min && dateValue < min) || (max && dateValue > max)) {
         return { message: 'error message' };
-      }else{
+      } else {
         return {};
       }
 

@@ -1,2 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.album .header {
+  margin: 0 auto;
+  text-align: center;
+}
 
+.album-photo {
+  height: 200px;
+}
+
+.artist {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.artist-photo{
+  height: 200px;
+}
+
+.album-route:link{
+  text-decoration: none;
+}

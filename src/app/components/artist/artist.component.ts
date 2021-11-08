@@ -8,12 +8,12 @@ import { MusicApiService } from 'src/app/services/music-api.service';
   styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
-  id:string;
-  artist:any;
-  albums:any[];
-  death:Date;
-  birth:Date;
-  deleted:boolean = false;
+  id: string;
+  artist: any;
+  albums: any[];
+  death: Date;
+  birth: Date;
+  deleted: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,23 +31,23 @@ export class ArtistComponent implements OnInit {
 
   getArtist(): void {
     this.musicApiService.getMusic(this.id, "artist")
-    .subscribe(res =>{
-      this.artist = res;
-      if(res.birthdate){
-        this.birth=res.birthdate;
-      }
-      if(res.deathDate){
-        this.death=res.deathDate;
-      }
+      .subscribe(res => {
+        this.artist = res;
+        if (res.birthdate) {
+          this.birth = res.birthdate;
+        }
+        if (res.deathDate) {
+          this.death = res.deathDate;
+        }
 
-    });
+      });
   }
 
   deleteArtist(): void {
     this.musicApiService.deleteMusic(this.id, "artist")
-    .subscribe(res =>{
-      this.deleted = true;
-    });
+      .subscribe(res => {
+        this.deleted = true;
+      });
   }
 
 

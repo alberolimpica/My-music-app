@@ -13,16 +13,16 @@ export class AllAlbumsComponent implements OnInit {
 
   constructor(private musicApiService: MusicApiService) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.searchAlbum();
   }
 
-  searchAlbum(){
-    this.musicApiService.searchMusic( "albums")
-    .subscribe(res =>{
-      this.albumResults = res;
-    });
+  searchAlbum() {
+    this.musicApiService.searchMusic("albums")
+      .subscribe(res => {
+        this.albumResults = res;
+      });
   }
 }

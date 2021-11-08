@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'see-artist/:id', component: ArtistComponent },
   { path: 'see-album/:id', component: AlbumComponent },
   { path: 'create-album', component: CreateAlbumComponent },
-  { path: 'modify-album/:id', component: CreateAlbumComponent },
   { path: 'create-artist', component: CreateArtistComponent },
+  { path: 'modify-album/:id', component: CreateAlbumComponent },
   { path: 'modify-artist/:id', component: CreateArtistComponent },
   { path: 'all-artists', component: AllArtistComponent },
   { path: 'all-albums', component: AllAlbumsComponent }

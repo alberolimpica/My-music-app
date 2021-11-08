@@ -12,17 +12,17 @@ export class AllArtistComponent implements OnInit {
 
   constructor(private musicApiService: MusicApiService) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.searchArtist();
   }
 
-  searchArtist(){
-    this.musicApiService.searchMusic( "artists")
-    .subscribe(res =>{
-      this.artistResults = res;
-    });
+  searchArtist() {
+    this.musicApiService.searchMusic("artists")
+      .subscribe(res => {
+        this.artistResults = res;
+      });
   }
 
 }

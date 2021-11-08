@@ -1,4 +1,4 @@
-<div  [hidden]="artist">
+<div [hidden]="artist">
   <div class="alert alert-dismissible alert-danger">
     <strong>No artist to display!</strong>
   </div>
@@ -24,9 +24,9 @@
             </div>
 
             <button type="button" class="btn btn-primary btn-sm m-3" routerLink="/modify-artist/{{artist._id}}">Modify Artist</button>
-            <button type="button" class="btn btn-danger btn-sm m-3" (click)="deleteArtist()" >Delete Artist</button>
+            <button type="button" class="btn btn-danger btn-sm m-3" (click)="deleteArtist()">Delete Artist</button>
 
-            <div  *ngIf="deleted" class="alert alert-dismissible alert-success">
+            <div *ngIf="deleted" class="alert alert-dismissible alert-success">
               <strong>Artist successfully deleted</strong>.
             </div>
           </div>
